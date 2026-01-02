@@ -15,7 +15,7 @@ I use a **dummy head pattern** to simplify linked list construction - this avoid
 
 For different length lists, I treat exhausted lists as 0. This handles edge cases naturally without extra complexity.
 
-**Optimization**: After initial implementation, I reconsidered the approach for better performance. Instead of using ternary operators to extract values into temporary variables, I start with `total = carry` and accumulate values directly. This reduces variable assignments and combines the value extraction with pointer movement in the same `if` block, resulting in fewer operations per iteration and better cache efficiency.
+**Optimization**: After initial implementation, I reconsidered the approach for better performance. Instead of using ternary operators to extract values into temporary variables, I start with `total = carry` and accumulate values directly. This will reduce variable assignments and combines the value extraction with pointer movement in the same `if` block, resulting in fewer operations per iteration and better cache efficiency.
 
 ### Implementation
 -------------------------------

@@ -15,6 +15,8 @@ I use a **dummy head pattern** to simplify linked list construction - this avoid
 
 For different length lists, I treat exhausted lists as 0. This handles edge cases naturally without extra complexity.
 
+**Optimization**: After initial implementation, I reconsidered the approach for better performance. Instead of using ternary operators to extract values into temporary variables, I start with `total = carry` and accumulate values directly. This reduces variable assignments and combines the value extraction with pointer movement in the same `if` block, resulting in fewer operations per iteration and better cache efficiency.
+
 ### Implementation
 -------------------------------
 ```python
@@ -25,16 +27,16 @@ class Solution:
         carry = 0
         
         while l1 or l2 or carry:
-            val1 = l1.val if l1 else 0
-            val2 = l2.val if l2 else 0
-            total = val1 + val2 + carry
+            total = carry
+            if l1:
+                total += l1.val
+                l1 = l1.next
+            if l2:
+                total += l2.val
+                l2 = l2.next
             carry = total // 10
             current.next = ListNode(total % 10)
             current = current.next
-            if l1:
-                l1 = l1.next
-            if l2:
-                l2 = l2.next
         
         return dummy.next
 ```

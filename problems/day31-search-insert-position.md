@@ -8,7 +8,7 @@ This is the simplest form of binary search. You just keep shrinking the search w
 -------------------------------
 ```python
 class Solution:
-    def searchInsert(self, nums: list[int], target: int) -> int:
+    def searchInsert(self, nums, target):
         left = 0
         right = len(nums) - 1
         
@@ -22,7 +22,6 @@ class Solution:
             else:
                 right = mid - 1
                 
-        # If we didn't find it, 'left' is the insertion index.
         return left
 ```
 
